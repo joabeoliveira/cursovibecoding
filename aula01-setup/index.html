@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="bg-slate-100">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aula 1 – Setup Vibe Code (Serviço Público)</title>
+    <meta
+      name="description"
+      content="Aula 1 do curso Vibe Code para o serviço público: preparo do ambiente com VS Code, extensões, Git/GitHub e repositório oficial de skills."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen bg-slate-100 text-slate-900">
+    <header class="border-b border-slate-200 bg-white/80 backdrop-blur sticky top-0 z-10">
+      <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
+        <div>
+          <p class="text-xs uppercase tracking-[0.2em] text-emerald-600 font-semibold">
+            Vibe Code · Serviço Público
+          </p>
+          <h1 class="text-xl sm:text-2xl font-bold text-slate-900">
+            Aula 1 – Setup do Ambiente
+          </h1>
+          <p class="text-sm text-slate-600 mt-1">
+            VS Code · Extensões · Git/GitHub (opcional) · Repositório de Skills
+          </p>
+        </div>
+        <a
+          href="https://github.com/joabeoliveira/skills"
+          target="_blank"
+          rel="noreferrer"
+          class="inline-flex items-center gap-2 rounded-full border border-emerald-500 bg-emerald-50 px-3 py-1 text-xs sm:text-sm font-medium text-emerald-800 hover:bg-emerald-100 transition-colors"
+        >
+          <span class="inline-block h-2 w-2 rounded-full bg-emerald-500"></span>
+          Repo oficial de skills
+        </a>
+      </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 py-8 space-y-10">
+      <!-- Barra de progresso -->
+      <section class="bg-white rounded-xl shadow-sm border border-slate-200 p-4 sm:p-5">
+        <div class="flex items-center justify-between gap-4 mb-3">
+          <div>
+            <h2 class="text-sm font-semibold text-slate-800">Progresso desta aula</h2>
+            <p class="text-xs text-slate-500">
+              Complete o checklist e o quiz para avançar para a próxima aula.
+            </p>
+          </div>
+          <span id="progressText" class="text-sm font-semibold text-emerald-700">0% concluído</span>
+        </div>
+        <div class="w-full bg-slate-100 rounded-full h-3 overflow-hidden">
+          <div
+            id="progressBar"
+            class="h-3 bg-emerald-500 rounded-full transition-all duration-300"
+            style="width: 0%"
+          ></div>
+        </div>
+      </section>
+
+      <!-- Boas-vindas -->
+      <section class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 sm:p-6 space-y-4">
+        <header>
+          <h2 class="text-lg sm:text-xl font-semibold text-slate-900 mb-1">
+            Boas-vindas ao Vibe Code para o serviço público
+          </h2>
+          <p class="text-sm text-slate-600">
+            Nesta aula você vai preparar o ambiente para desenvolver interfaces Web simples e automações
+            com foco em uso dentro do setor público, usando apenas HTML, CSS, Tailwind CSS e JavaScript.
+          </p>
+        </header>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="space-y-2 text-sm text-slate-700">
+            <p class="font-medium">Ao final desta aula você será capaz de:</p>
+            <ul class="list-disc list-inside space-y-1">
+              <li>Instalar e abrir o VS Code no Windows.</li>
+              <li>Configurar extensões essenciais para HTML, CSS, Tailwind e JavaScript.</li>
+              <li>Conhecer o repositório oficial de skills do curso.</li>
+              <li>Criar a pasta do curso na sua máquina.</li>
+              <li>Acompanhar seu próprio progresso por meio desta página interativa.</li>
+            </ul>
+          </div>
+          <div class="space-y-2 text-sm text-slate-700">
+            <p class="font-medium">Público-alvo e contexto:</p>
+            <ul class="list-disc list-inside space-y-1">
+              <li>Servidores públicos, terceirizados e estagiários que atuam em órgãos públicos.</li>
+              <li>Ambiente com possíveis restrições de instalação e acesso à internet.</li>
+              <li>Foco em soluções simples que podem rodar em VPS com painel (EasyPanel/Coolify).</li>
+              <li>Materiais alinhados com acessibilidade e boas práticas para gov.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pré-requisitos -->
+      <section class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 sm:p-6 space-y-4">
+        <header class="flex items-start justify-between gap-4">
+          <div>
+            <h2 class="text-lg font-semibold text-slate-900 mb-1">Pré-requisitos ideais</h2>
+            <p class="text-sm text-slate-600">
+              Não é preciso ser da área de TI. Basta ter curiosidade e um computador com Windows.
+            </p>
+          </div>
+        </header>
+        <div class="grid md:grid-cols-[2fr,1.3fr] gap-4 items-start">
+          <ul class="list-disc list-inside text-sm text-slate-700 space-y-1">
+            <li>Computador com Windows 10 ou superior.</li>
+            <li>Acesso à internet para baixar VS Code e acessar o GitHub.</li>
+            <li>Algum navegador moderno (Edge, Chrome, Firefox, etc.).</li>
+            <li>
+              Permissão para instalar programas
+              <span class="text-slate-500">(ou apoio da equipe de TI para instalar por você)</span>.
+            </li>
+          </ul>
+          <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 text-xs text-amber-900 space-y-2">
+            <p class="font-semibold flex items-center gap-2">
+              <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-amber-100 text-amber-700">!</span>
+              Dica para quem trabalha no serviço público
+            </p>
+            <p>
+              Se downloads ou instalações forem bloqueados, registre um chamado para a área de TI explicando
+              que o curso usa ferramentas amplamente adotadas (VS Code, Git) e que o código será aberto para revisão.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Passo a passo VS Code & extensões -->
+      <section class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 sm:p-6 space-y-6">
+        <header>
+          <h2 class="text-lg sm:text-xl font-semibold text-slate-900 mb-1">Passo a passo: VS Code e extensões</h2>
+          <p class="text-sm text-slate-600">
+            Siga os passos abaixo no seu computador. Marque o checklist interativo conforme for concluindo.
+          </p>
+        </header>
+
+        <div class="grid md:grid-cols-[1.8fr,1.3fr] gap-6">
+          <!-- Instruções detalhadas -->
+          <div class="space-y-4 text-sm text-slate-700">
+            <div>
+              <h3 class="font-semibold text-slate-900 mb-1">1. Instalar o VS Code</h3>
+              <ol class="list-decimal list-inside space-y-1">
+                <li>Acesse o site oficial do Visual Studio Code.</li>
+                <li>Baixe a versão para Windows.</li>
+                <li>Execute o instalador e siga as opções padrão.</li>
+                <li>Ao final, abra o VS Code pela primeira vez.</li>
+              </ol>
+            </div>
+
+            <div>
+              <h3 class="font-semibold text-slate-900 mb-1">2. Configurar idioma e aparência (opcional)</h3>
+              <ul class="list-disc list-inside space-y-1">
+                <li>Na área de extensões, procure por “Portuguese (Brazil) Language Pack”.</li>
+                <li>Instale o pacote para deixar a interface em português, se preferir.</li>
+                <li>Ajuste o zoom (Ctrl + + / Ctrl + -) para facilitar a leitura.</li>
+                <li>Escolha um tema de sua preferência (claro ou escuro).</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 class="font-semibold text-slate-900 mb-1">3. Instalar extensões essenciais</h3>
+              <p class="mb-1">Abra a aba de extensões (atalho típico: Ctrl + Shift + X) e procure por:</p>
+              <ul class="list-disc list-inside space-y-1">
+                <li><span class="font-medium">Live Server</span> – para abrir arquivos HTML no navegador com auto-reload.</li>
+                <li><span class="font-medium">HTML CSS Support</span> (ou similar) – ajuda com sugestão de tags e estilos.</li>
+                <li><span class="font-medium">Prettier</span> (ou outro formatter) – para formatar o código automaticamente.</li>
+                <li><span class="font-medium">Tailwind CSS IntelliSense</span> – para sugerir classes do Tailwind.</li>
+                <li><span class="font-medium">Extensão de ícones</span> – opcional, apenas para melhorar a visualização de pastas/arquivos.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Checklist interativo -->
+          <div class="bg-slate-50 border border-slate-200 rounded-lg p-4 space-y-4">
+            <h3 class="text-sm font-semibold text-slate-900 mb-1">Checklist interativo de setup</h3>
+            <p class="text-xs text-slate-600 mb-2">
+              Marque o que você já concluiu. Depois clique em “Verificar setup”.
+            </p>
+            <form class="space-y-2 text-sm text-slate-800" onsubmit="return false;">
+              <label class="flex items-start gap-2 cursor-pointer">
+                <input id="step-vscode" type="checkbox" class="mt-1 rounded border-slate-300 text-emerald-600" />
+                <span>Instalei o Visual Studio Code no meu computador.</span>
+              </label>
+              <label class="flex items-start gap-2 cursor-pointer">
+                <input id="step-extensions" type="checkbox" class="mt-1 rounded border-slate-300 text-emerald-600" />
+                <span>Instalei as extensões essenciais (Live Server, HTML/CSS, Tailwind, formatter).</span>
+              </label>
+              <label class="flex items-start gap-2 cursor-pointer">
+                <input id="step-skills" type="checkbox" class="mt-1 rounded border-slate-300 text-emerald-600" />
+                <span>
+                  Consegui acessar o repositório oficial de skills
+                  <span class="underline decoration-dotted">(abre em nova aba)</span>.
+                </span>
+              </label>
+              <label class="flex items-start gap-2 cursor-pointer">
+                <input id="step-folder" type="checkbox" class="mt-1 rounded border-slate-300 text-emerald-600" />
+                <span>Criei uma pasta para o curso (por exemplo, <span class="font-mono">curso-vibe-coding</span>).</span>
+              </label>
+
+              <button
+                id="btn-verificar-setup"
+                class="mt-3 inline-flex w-full items-center justify-center rounded-lg bg-emerald-600 px-3 py-2 text-xs font-semibold text-white hover:bg-emerald-700 transition-colors"
+              >
+                Verificar setup
+              </button>
+            </form>
+            <div id="resultado-setup" class="text-xs"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Repositório de skills -->
+      <section class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 sm:p-6 space-y-4">
+        <header>
+          <h2 class="text-lg sm:text-xl font-semibold text-slate-900 mb-1">Repositório oficial de skills do curso</h2>
+          <p class="text-sm text-slate-600">
+            Vamos usar o repositório
+            <a
+              href="https://github.com/joabeoliveira/skills"
+              target="_blank"
+              rel="noreferrer"
+              class="font-semibold text-emerald-700 underline decoration-dotted"
+              >joabeoliveira/skills</a
+            >
+            como kit oficial de HTML, CSS, Tailwind, JavaScript e automações com n8n.
+          </p>
+        </header>
+        <div class="grid md:grid-cols-2 gap-4 text-sm text-slate-700">
+          <div class="space-y-2">
+            <p class="font-medium">Algumas skills que você verá ao longo do curso:</p>
+            <ul class="list-disc list-inside space-y-1">
+              <li><span class="font-semibold">html-structure</span> – estrutura semântica, SEO e acessibilidade.</li>
+              <li><span class="font-semibold">tailwind-css</span> – design responsivo, mobile-first e dark mode.</li>
+              <li><span class="font-semibold">javascript-vanilla</span> – JS moderno sem frameworks.</li>
+              <li><span class="font-semibold">n8n-integration</span> – automações e webhooks para fluxos de trabalho.</li>
+              <li><span class="font-semibold">deploy-gov-mvp</span> – boas práticas de deploy em contexto gov.</li>
+            </ul>
+          </div>
+          <div class="bg-slate-50 border border-slate-200 rounded-lg p-4 space-y-2 text-xs">
+            <p class="font-semibold text-slate-900 flex items-center gap-2">
+              <span class="inline-flex h-5 w-5 items-center justify-center rounded-full bg-slate-900 text-white text-[10px]">1</span>
+              Como explorar o repositório rapidamente
+            </p>
+            <ol class="list-decimal list-inside space-y-1 text-slate-700">
+              <li>Clique no link do repositório (acima).</li>
+              <li>Role até a seção que mostra a pasta <span class="font-mono">.skills/</span>.</li>
+              <li>Abra pelo menos 2 arquivos <span class="font-mono">SKILL.md</span> para ter uma visão geral.</li>
+              <li>
+                Lembre-se: nas próximas aulas vamos usar essas skills como referência para HTML, Tailwind, JS e n8n.
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quiz de conceitos básicos -->
+      <section class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 sm:p-6 space-y-5">
+        <header>
+          <h2 class="text-lg sm:text-xl font-semibold text-slate-900 mb-1">Quiz rápido – entendeu os conceitos?</h2>
+          <p class="text-sm text-slate-600">
+            Responda às perguntas abaixo. Isso ajuda a fixar a diferença entre ferramentas e o papel de cada uma.
+          </p>
+        </header>
+
+        <form id="quiz-form" class="space-y-4 text-sm text-slate-800" onsubmit="return false;">
+          <fieldset class="space-y-2">
+            <legend class="font-semibold text-slate-900">1. O que é o VS Code?</legend>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="q1" value="a" class="rounded border-slate-300 text-emerald-600" />
+              <span>Um navegador Web.</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="q1" value="b" class="rounded border-slate-300 text-emerald-600" />
+              <span>Um editor de código leve e extensível, ideal para HTML, CSS e JS.</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="q1" value="c" class="rounded border-slate-300 text-emerald-600" />
+              <span>Um sistema de gestão de banco de dados.</span>
+            </label>
+          </fieldset>
+
+          <fieldset class="space-y-2">
+            <legend class="font-semibold text-slate-900">2. Qual é a função do GitHub?</legend>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="q2" value="a" class="rounded border-slate-300 text-emerald-600" />
+              <span>Servir apenas como editor de texto online.</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="q2" value="b" class="rounded border-slate-300 text-emerald-600" />
+              <span>Hospedar e versionar código usando Git, permitindo colaboração.</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="q2" value="c" class="rounded border-slate-300 text-emerald-600" />
+              <span>Substituir completamente o uso de Git local.</span>
+            </label>
+          </fieldset>
+
+          <fieldset class="space-y-2">
+            <legend class="font-semibold text-slate-900">
+              3. Em qual pasta ficam as skills reutilizáveis usadas neste curso, dentro do repositório oficial?
+            </legend>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="q3" value="a" class="rounded border-slate-300 text-emerald-600" />
+              <span>Em uma pasta chamada <span class="font-mono">/src</span>.</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="q3" value="b" class="rounded border-slate-300 text-emerald-600" />
+              <span>Em uma pasta chamada <span class="font-mono">.skills/</span>, com várias subpastas.</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="radio" name="q3" value="c" class="rounded border-slate-300 text-emerald-600" />
+              <span>Em uma pasta chamada <span class="font-mono">templates/</span>.</span>
+            </label>
+          </fieldset>
+
+          <button
+            id="btn-verificar-quiz"
+            class="mt-2 inline-flex items-center justify-center rounded-lg bg-slate-900 px-4 py-2 text-xs font-semibold text-white hover:bg-slate-800 transition-colors"
+          >
+            Verificar respostas
+          </button>
+        </form>
+
+        <div id="resultado-quiz" class="text-xs mt-1"></div>
+      </section>
+
+      <!-- Próximos passos -->
+      <section class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 sm:p-6 space-y-4">
+        <header>
+          <h2 class="text-lg sm:text-xl font-semibold text-slate-900 mb-1">Encerramento da Aula 1 e próximos passos</h2>
+          <p class="text-sm text-slate-600">
+            Se o seu progresso estiver alto e você tiver passado pelo quiz, você já está pronto para construir
+            sua primeira página com Tailwind na próxima aula.
+          </p>
+        </header>
+        <div class="grid md:grid-cols-2 gap-4 text-sm text-slate-700">
+          <div class="space-y-1">
+            <p class="font-medium">Resumo do que você fez:</p>
+            <ul class="list-disc list-inside space-y-1">
+              <li>Instalou (ou solicitou instalação) do VS Code.</li>
+              <li>Conheceu extensões essenciais para HTML, CSS, Tailwind e JS.</li>
+              <li>Acessou o repositório oficial de skills do curso.</li>
+              <li>Criou a pasta base do curso na sua máquina.</li>
+              <li>Aprendeu conceitos básicos de VS Code, Git e GitHub.</li>
+            </ul>
+          </div>
+          <div class="space-y-1">
+            <p class="font-medium">Na próxima aula (HTML + Tailwind na prática):</p>
+            <ul class="list-disc list-inside space-y-1">
+              <li>Criar um <span class="font-mono">index.html</span> inicial dentro da sua pasta do curso.</li>
+              <li>Usar Tailwind via CDN para criar um layout simples e acessível.</li>
+              <li>Aplicar na prática recomendações das skills <span class="font-mono">html-structure</span> e <span class="font-mono">tailwind-css</span>.</li>
+              <li>Rodar o arquivo no navegador (com Live Server ou clique duplo).</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const checklistIds = ["step-vscode", "step-extensions", "step-skills", "step-folder"];
+        const checkboxes = checklistIds
+          .map((id) => document.getElementById(id))
+          .filter((el) => el instanceof HTMLInputElement);
+
+        const btnVerificarSetup = document.getElementById("btn-verificar-setup");
+        const resultadoSetup = document.getElementById("resultado-setup");
+
+        const quizForm = document.getElementById("quiz-form");
+        const btnVerificarQuiz = document.getElementById("btn-verificar-quiz");
+        const resultadoQuiz = document.getElementById("resultado-quiz");
+
+        const progressBar = document.getElementById("progressBar");
+        const progressText = document.getElementById("progressText");
+
+        let quizConcluido = false;
+
+        function calcularProgresso() {
+          const totalChecklist = checkboxes.length;
+          const marcados = checkboxes.filter((c) => c.checked).length;
+
+          const parteChecklist = totalChecklist > 0 ? (marcados / totalChecklist) * 70 : 0; // até 70%
+          const parteQuiz = quizConcluido ? 30 : 0; // quiz vale 30%
+
+          return Math.round(parteChecklist + parteQuiz);
+        }
+
+        function atualizarProgresso() {
+          const progresso = calcularProgresso();
+          if (progressBar) {
+            progressBar.style.width = `${progresso}%`;
+          }
+          if (progressText) {
+            progressText.textContent = `${progresso}% concluído`;
+          }
+        }
+
+        // Listeners do checklist
+        checkboxes.forEach((cb) => {
+          cb.addEventListener("change", atualizarProgresso);
+        });
+
+        // Verificar setup
+        if (btnVerificarSetup && resultadoSetup) {
+          btnVerificarSetup.addEventListener("click", () => {
+            const pendentes = [];
+
+            if (!document.getElementById("step-vscode").checked) {
+              pendentes.push("Instalar o VS Code");
+            }
+            if (!document.getElementById("step-extensions").checked) {
+              pendentes.push("Instalar as extensões essenciais");
+            }
+            if (!document.getElementById("step-skills").checked) {
+              pendentes.push("Acessar o repositório de skills");
+            }
+            if (!document.getElementById("step-folder").checked) {
+              pendentes.push("Criar a pasta do curso");
+            }
+
+            if (pendentes.length === 0) {
+              resultadoSetup.innerHTML = `
+                <div class="mt-2 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2 text-emerald-800">
+                  <p class="font-semibold text-xs">Parabéns! 🎉</p>
+                  <p class="text-[11px]">Seu ambiente básico está pronto para o Vibe Code.</p>
+                </div>
+              `;
+            } else {
+              const itens = pendentes.map((p) => `<li>${p}</li>`).join("");
+              resultadoSetup.innerHTML = `
+                <div class="mt-2 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-amber-900">
+                  <p class="font-semibold text-xs">Quase lá…</p>
+                  <p class="text-[11px] mb-1">Ainda faltam os itens abaixo. Use isso como guia:</p>
+                  <ul class="list-disc list-inside text-[11px] space-y-0.5">
+                    ${itens}
+                  </ul>
+                </div>
+              `;
+            }
+
+            atualizarProgresso();
+          });
+        }
+
+        // Verificar quiz
+        if (btnVerificarQuiz && quizForm && resultadoQuiz) {
+          const gabarito = {
+            q1: "b",
+            q2: "b",
+            q3: "b",
+          };
+
+          btnVerificarQuiz.addEventListener("click", () => {
+            const dados = new FormData(quizForm);
+            let respondidas = 0;
+            let corretas = 0;
+
+            Object.keys(gabarito).forEach((questao) => {
+              const resposta = dados.get(questao);
+              if (resposta) {
+                respondidas += 1;
+                if (resposta === gabarito[questao]) {
+                  corretas += 1;
+                }
+              }
+            });
+
+            if (respondidas < Object.keys(gabarito).length) {
+              resultadoQuiz.innerHTML = `
+                <div class="mt-2 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-amber-900">
+                  <p class="font-semibold text-xs">Responda todas as perguntas</p>
+                  <p class="text-[11px]">Marque uma alternativa em cada questão antes de verificar.</p>
+                </div>
+              `;
+              return;
+            }
+
+            quizConcluido = true;
+            const total = Object.keys(gabarito).length;
+            const percentual = Math.round((corretas / total) * 100);
+
+            if (percentual === 100) {
+              resultadoQuiz.innerHTML = `
+                <div class="mt-2 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2 text-emerald-800">
+                  <p class="font-semibold text-xs">Excelente! Você acertou todas as questões (${percentual}%).</p>
+                  <p class="text-[11px]">Você já tem clareza sobre o papel do VS Code, GitHub e do repositório de skills.</p>
+                </div>
+              `;
+            } else {
+              resultadoQuiz.innerHTML = `
+                <div class="mt-2 rounded-lg border border-sky-200 bg-sky-50 px-3 py-2 text-sky-900">
+                  <p class="font-semibold text-xs">Você acertou ${corretas} de ${total} (${percentual}%).</p>
+                  <p class="text-[11px]">Revise as explicações acima, especialmente a diferença entre VS Code, Git e GitHub.</p>
+                </div>
+              `;
+            }
+
+            atualizarProgresso();
+          });
+        }
+
+        // Inicializa barra de progresso
+        atualizarProgresso();
+      });
+    </script>
+  </body>
+</html>
